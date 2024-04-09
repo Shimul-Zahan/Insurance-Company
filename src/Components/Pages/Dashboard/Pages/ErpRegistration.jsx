@@ -19,9 +19,6 @@ const ErpRegistration = () => {
   const [selectedOption, setSelectedOption] = useState('');
   const [selectedOptionSelector, setSelectedOptionSelector] = useState('');
   const [access, setAccess] = useState(false);
-  const [firstStep, setFirstStep] = useState(false);
-  const [secondStep, setSecondStep] = useState(false);
-  const [thirdStep, setThirdStep] = useState(false);
 
   const handleOptionChangeForSelectors = (event) => {
     setSelectedOptionSelector(event.target.value);
@@ -339,9 +336,6 @@ const ErpRegistration = () => {
           </div>
         )}
       </div>
-
-      {/* previous button */}
-
     </div>
   );
 };
