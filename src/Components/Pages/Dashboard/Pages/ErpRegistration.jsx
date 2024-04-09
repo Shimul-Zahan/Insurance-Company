@@ -19,6 +19,9 @@ const ErpRegistration = () => {
   const [selectedOption, setSelectedOption] = useState('');
   const [selectedOptionSelector, setSelectedOptionSelector] = useState('');
   const [access, setAccess] = useState(false);
+  const [firstStep, setFirstStep] = useState(false);
+  const [secondStep, setSecondStep] = useState(false);
+  const [thirdStep, setThirdStep] = useState(false);
 
   const handleOptionChangeForSelectors = (event) => {
     setSelectedOptionSelector(event.target.value);
@@ -65,7 +68,9 @@ const ErpRegistration = () => {
           <ol className="grid grid-cols-4 text-sm font-medium text-gray-500">
             <li className="relative flex justify-start text-blue-600">
               <span className={`absolute -bottom-[1.75rem] start-0  bg-white border border-gray-400 w-6 h-6 flex justify-center items-center rounded-full text-black ${activeStep === 1 ? 'bg-gray-700' : ''}`}>
-                <h1>1</h1>
+                {
+                  activeStep === 2 || activeStep === 3 || activeStep === 4 ? <IoIosCheckmarkCircle className='h-5 w-5 text-green-700' /> : <h1>1</h1>
+                }
               </span>
 
               <span className={`hidden sm:block absolute text-sm -bottom-[3.75rem] -left-7 text-center ${activeStep === 1 ? 'text-blue-600 font-semibold' : ''}`}> ERP Selection </span>
@@ -75,7 +80,9 @@ const ErpRegistration = () => {
               <span
                 className={`absolute -bottom-[1.75rem] left-1/2 -translate-x-1/2 bg-white border border-gray-400 w-6 h-6 flex justify-center items-center rounded-full text-black ${activeStep === 2 ? 'bg-gray-700' : ''}`}
               >
-                <h1>2</h1>
+                {
+                  activeStep === 3 || activeStep === 4 ? <IoIosCheckmarkCircle className='h-5 w-5 text-green-700' /> : <h1>2</h1>
+                }
               </span>
 
               <span className={`hidden sm:block absolute text-sm -bottom-[3.75rem] ${activeStep === 2 ? 'text-blue-600 font-semibold' : ''}`}> Connect to ERP </span>
@@ -83,7 +90,9 @@ const ErpRegistration = () => {
 
             <li className="relative flex justify-center text-blue-600">
               <span className={`absolute -bottom-[1.75rem] end-0 bg-white border border-gray-400 w-6 h-6 flex justify-center items-center rounded-full text-black ${activeStep === 3 ? 'bg-gray-700' : ''}`}>
-                <h1>3</h1>
+                {
+                  activeStep === 4 ? <IoIosCheckmarkCircle className='h-5 w-5 text-green-700' /> : <h1>3</h1>
+                }
               </span>
 
               <span className={`hidden sm:block absolute text-sm -bottom-[3.75rem] text-center -right-14 ${activeStep === 3 ? 'text-blue-600 font-semibold' : ''}`}> Configure Organization </span>
@@ -150,7 +159,7 @@ const ErpRegistration = () => {
                 <button disabled onClick={previousStep} className="bg-transparent border border-gray-400 text-black px-10  py-2 rounded ">Cancel</button>
                 {!isLastStep && (
                   <div onClick={handleButtonClick} className='flex cursor-pointer justify-center items-center gap-2 bg-[#AEB2B4] px-10'>
-                    <button className=" text-white py-2 rounded ">Next </button>
+                    <button className=" text-white py-2 rounded">Next </button>
                     <img src={arrow2} alt="" />
                   </div>
                 )}
@@ -208,7 +217,7 @@ const ErpRegistration = () => {
                 </div>
                 <p>By allowing access, you agree to transfer your data <br /> between Xero and this application in accordance with Xero's <br /> <span className='font-semibold text-blue-500'>Term's and use</span> and the application provider's term's and use <br /> and private policy. <br />Youn can disconnect at any time by going to <span className='text-blue-500 font-semibold'> <br />connected app </span>in your Xero's setting.</p>
                 <button onClick={() => setAccess(true)} className='w-[90%] bg-blue-600 text-lg py-2 my-5 rounded-lg text-white'>Allow Access</button>
-                  <button onClick={previousStep} className=' my-3 text-lg font-semibold rounded-lg text-black'>Cancel</button>
+                <button onClick={previousStep} className=' my-3 text-lg font-semibold rounded-lg text-black'>Cancel</button>
               </div>
             }{
               access &&
