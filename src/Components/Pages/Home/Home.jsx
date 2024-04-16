@@ -9,10 +9,8 @@ import DasNavbar from '../Dashboard/DasNavbar'
 const Home = () => {
     return (
         <>
-            <Navbar />
             <Banner />
             <Features />
-            <Footer />
         </>
     )
 }

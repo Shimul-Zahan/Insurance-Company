@@ -3,6 +3,7 @@ import icon2 from '../../../../assets/fb.png'
 import icon3 from '../../../../assets/doc.png'
 import icon4 from '../../../../assets/Vector.png'
 import logo from '../../../../assets/3f296642258e2f8fb7b0484eb32b92a9.png'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
@@ -170,25 +171,34 @@ const Footer = () => {
                 <hr />
                 <div className="mx-auto container pt-5">
                     <nav className="flex items-center justify-between max-w-7xl mx-auto text-white">
-                        <div className="scale-100 rounded-2xl px-3 py-2 text-xl font-semibold text-[#535C69] transition-all duration-200 hover:scale-110">
-                            <img src={logo} className='h-10 w-full' alt="" />
+                        <div className="scale-100 rounded-2xl px-3 py-2 text-xl font-semibold text-[#535C69] transition-all duration-200">
+                            <Link to='/'>
+                                <img src={logo} className='h-10 w-full' alt="" />
+                            </Link>
                         </div>
                         <ul className="flex items-center justify-between gap-6 text-slate-900">
-                            <li className="cursor-pointer  rounded-full  px-6 py-2 text-black hover:bg-sky-600">Terms</li>
-                            <li className="cursor-pointer  rounded-full px-6 py-2 text-black hover:bg-sky-600">Privacy</li>
-                            <li className="cursor-pointer  rounded-full px-6 py-2 text-black hover:bg-sky-600">Cookies</li>
+                            <li className="cursor-pointer  rounded-full  px-6 py-2 text-black ">Terms</li>
+                            <li className="cursor-pointer  rounded-full px-6 py-2 text-black ">Privacy</li>
+                            <li className="cursor-pointer  rounded-full px-6 py-2 text-black ">Cookies</li>
 
                         </ul>
                         <div>
                             <ul className='flex justify-center items-center gap-3'>
                                 <li>
-                                    <img src={icon1} alt="" className='h-8 w-8' />
+                                    <Link>
+                                        <img src={icon1} alt="" className='h-8 w-8' />
+                                    </Link>
                                 </li>
                                 <li>
-                                    <img src={icon2} alt="" className='h-8 w-8' />
+                                    <Link>
+                                        <img src={icon2} alt="" className='h-8 w-8' />
+                                    </Link>
                                 </li>
                                 <li>
-                                    <img src={icon3} alt="" className='h-8 w-8' />
+                                    <Link>
+                                        <img src={icon3} alt="" className='h-8 w-8' />
+
+                                    </Link>
                                 </li>
                             </ul>
                         </div>

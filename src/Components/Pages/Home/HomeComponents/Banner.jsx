@@ -12,14 +12,14 @@ const Banner = () => {
             className="relative bg-cover bg-center bg-no-repeat font-sans"
             style={{
                 backgroundImage: `url(${bannerImage})`,
-                maxHeight: `calc(100vh - 80px)`,
+                maxHeight: `calc(80vh - 80px)`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
             }}
         >
             <div className="absolute inset-0 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"></div>
 
-            <div className="relative mx-auto max-w-screen-xl  px-4 py-32 sm:px-6 lg:flex h-[88vh] lg:items-center lg:px-8">
+            <div className="relative mx-auto max-w-screen-xl  px-4 sm:px-6 lg:flex h-[70vh] lg:items-center lg:px-8">
                 {instruction === 'home' && (
                     <div className="max-w-xl text-start ltr:sm:text-left rtl:sm:text-right">
                         <h1 className="text-3xl font-extrabold text-black sm:text-5xl">

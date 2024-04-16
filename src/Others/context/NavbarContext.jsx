@@ -4,9 +4,10 @@ export const NavbarContext = createContext(null);
 
 const NavbarContextProvider = ({ children }) => {
     const [instruction, setInstruction] = useState('home');
+    const [click, setClick] = useState(false);
 
     return (
-        <NavbarContext.Provider value={{ instruction, setInstruction }}>
+        <NavbarContext.Provider value={{ instruction, setInstruction, click, setClick }}>
             {children}
         </NavbarContext.Provider>
     );

@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import seconstepImage from '../../../../assets/dashboard/2nd-step.jpg'
+import React, { useContext, useState } from 'react';
 import Select from 'react-select';
 import arrow1 from '../../../../assets/dashboard/FeatherIcon.png'
 import arrow2 from '../../../../assets/dashboard/Feather-Icon.png'
-import { FaFilePdf } from "react-icons/fa6";
 import { IoIosCheckmarkCircle } from "react-icons/io";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { NavbarContext } from '../../../../Others/context/NavbarContext';
+import AliveDemo from '../../../Shared/AliveDemo';
+import AllowAccess from '../../../Shared/AllowAccess';
 
 const colourOptions = [
   { value: 'ocean', label: 'Ocean', color: '#00B8D9' },
@@ -47,7 +50,8 @@ const ErpRegistration = () => {
 
   const handleButtonClick = () => {
     if (isLastStep) {
-      console.log("Form submitted!");
+      toast.success("Form submitted successfully");
+      setActiveStep(5)
     } else {
       nextStep();
     }
@@ -64,9 +68,9 @@ const ErpRegistration = () => {
         <div className="after:mt-4 after:block after:h-1 after:w-full after:rounded-lg after:bg-gray-200">
           <ol className="grid grid-cols-4 text-sm font-medium text-gray-500">
             <li className="relative flex justify-start text-blue-600">
-              <span className={`absolute -bottom-[1.75rem] start-0  bg-white border border-gray-400 w-6 h-6 flex justify-center items-center rounded-full text-black ${activeStep === 1 ? 'bg-gray-700' : ''}`}>
+              <span className={`absolute -bottom-[1.75rem] start-0 border border-gray-400 w-6 h-6 flex justify-center items-center rounded-full text-black ${activeStep === 1 ? 'bg-[#5D656A] text-white' : 'bg-white'}`}>
                 {
-                  activeStep === 2 || activeStep === 3 || activeStep === 4 ? <IoIosCheckmarkCircle className='h-5 w-5 text-green-700' /> : <h1>1</h1>
+                  activeStep === 2 || activeStep === 3 || activeStep === 4 || activeStep === 5 ? <IoIosCheckmarkCircle className='h-6 w-6 text-[#5D656A]' /> : <h1>1</h1>
                 }
               </span>
 
@@ -75,29 +79,33 @@ const ErpRegistration = () => {
 
             <li className="relative flex justify-center text-blue-600">
               <span
-                className={`absolute -bottom-[1.75rem] left-1/2 -translate-x-1/2 bg-white border border-gray-400 w-6 h-6 flex justify-center items-center rounded-full text-black ${activeStep === 2 ? 'bg-gray-700' : ''}`}
+                className={`absolute -bottom-[1.75rem] -ml-10  border border-gray-400 w-6 h-6 flex justify-center items-center rounded-full text-black ${activeStep === 2 ? 'bg-[#5D656A] text-white' : 'bg-white'}`}
               >
                 {
-                  activeStep === 3 || activeStep === 4 ? <IoIosCheckmarkCircle className='h-5 w-5 text-green-700' /> : <h1>2</h1>
+                  activeStep === 3 || activeStep === 4 || activeStep === 5 ? <IoIosCheckmarkCircle className='h-6 w-6 text-[#5D656A]' /> : <h1>2</h1>
                 }
               </span>
 
-              <span className={`hidden sm:block absolute text-sm -bottom-[3.75rem] ${activeStep === 2 ? 'text-blue-600 font-semibold' : ''}`}> Connect to ERP </span>
+              <span className={`hidden sm:block absolute right-16 text-sm -bottom-[3.75rem] ${activeStep === 2 ? 'text-blue-600 font-semibold' : ''}`}> Connect to ERP </span>
             </li>
 
             <li className="relative flex justify-center text-blue-600">
-              <span className={`absolute -bottom-[1.75rem] end-0 bg-white border border-gray-400 w-6 h-6 flex justify-center items-center rounded-full text-black ${activeStep === 3 ? 'bg-gray-700' : ''}`}>
+              <span
+                className={`absolute -bottom-[1.75rem] ml-16 border border-gray-400 w-6 h-6 flex justify-center items-center rounded-full text-black ${activeStep === 3 ? 'bg-[#5D656A] text-white' : 'bg-white'}`}
+              >
                 {
-                  activeStep === 4 ? <IoIosCheckmarkCircle className='h-5 w-5 text-green-700' /> : <h1>3</h1>
+                  activeStep === 4 || activeStep === 5 ? <IoIosCheckmarkCircle className='h-6 w-6 text-[#5D656A]' /> : <h1>3</h1>
                 }
               </span>
 
-              <span className={`hidden sm:block absolute text-sm -bottom-[3.75rem] text-center -right-14 ${activeStep === 3 ? 'text-blue-600 font-semibold' : ''}`}> Configure Organization </span>
+              <span className={`hidden sm:block absolute text-sm -bottom-[3.75rem] text-center -right-3 ${activeStep === 3 ? 'text-blue-600 font-semibold' : ''}`}> Configure Organization </span>
             </li>
 
             <li className="relative flex justify-center text-blue-600">
-              <span className={`absolute -bottom-[1.75rem] end-0 bg-white border border-gray-400 w-6 h-6 flex justify-center items-center rounded-full text-black ${activeStep === 4 ? 'bg-gray-700' : ''}`}>
-                <h1>4</h1>
+              <span className={`absolute -bottom-[1.75rem] end-0 border border-gray-400 w-6 h-6 flex justify-center items-center rounded-full text-black ${activeStep === 4 ? 'bg-[#5D656A] text-white' : 'bg-white'}`}>
+                {
+                  activeStep === 5 ? <IoIosCheckmarkCircle className='h-6 w-6 text-[#5D656A]' /> : <h1>4</h1>
+                }
               </span>
 
               <span className={`hidden sm:block absolute text-sm -bottom-[3.75rem] -right-14 ${activeStep === 4 ? 'text-blue-600 font-semibold' : ''}`}> Review & Activate </span>
@@ -172,57 +180,10 @@ const ErpRegistration = () => {
 
             {
               !access &&
-              <div className='mx-auto w-[500px] flex flex-col justify-center items-center'>
-                <div className='h-16 w-16 rounded-full bg-blue-500 flex justify-center items-center'>
-                  <h1 className='text-white text-lg font-bold'>XERO</h1>
-                </div>
-                <h1><span className='font-bold'>Alive-demo</span> want to acces:</h1>
-                <div className='py-5'>
-                  <h1 className='text-lg font-semibold py-1'>Organization data</h1>
-                  <div className='flex justify-between items-start gap-10 py-5'>
-                    <div className='h-16 w-16'>
-                      <FaFilePdf className='w-full h-full' />
-                    </div>
-                    <div>
-                      <h1 className='text-lg font-semibold'>Alive</h1>
-                      <p>View and manage your:</p>
-                      <ol className='pl-2'>
-                        <li>• Organization settings</li>
-                        <li>• Attachments</li>
-                        <li>• Bussiness transactions</li>
-                        <li>• Contacts</li>
-                      </ol>
-                      <h1>View your:</h1>
-                      <ol className='pl-2'>
-                        <li>• Reports</li>
-                        <li>• Gender ledger</li>
-                      </ol>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <h1 className='text-lg font-semibold py-1'>User account information</h1>
-                  <div className='flex justify-between items-start gap-10 py-5'>
-                    <div className='h-16 w-16'>
-                      <FaFilePdf className='w-full h-full' />
-                    </div>
-                    <div>
-                      <h1 className='text-lg font-semibold'>Harish Gupta</h1>
-                      <p>View your name, eamil and <br /> user profile.</p>
-                    </div>
-                  </div>
-                </div>
-                <p>By allowing access, you agree to transfer your data <br /> between Xero and this application in accordance with Xero's <br /> <span className='font-semibold text-blue-500'>Term's and use</span> and the application provider's term's and use <br /> and private policy. <br />Youn can disconnect at any time by going to <span className='text-blue-500 font-semibold'> <br />connected app </span>in your Xero's setting.</p>
-                <button onClick={() => setAccess(true)} className='w-[90%] bg-blue-600 text-lg py-2 my-5 rounded-lg text-white'>Allow Access</button>
-                <button onClick={previousStep} className=' my-3 text-lg font-semibold rounded-lg text-black'>Cancel</button>
-              </div>
+              <AliveDemo previousStep={previousStep} setAccess={setAccess} />
             }{
               access &&
-              <div className='flex flex-col justify-center items-center'>
-                <h1 className='text-lg font-semibold'>Allow access</h1>
-                <hr className='my-4 border-gray-400 border w-full' />
-                <IoIosCheckmarkCircle className='h-10 w-10 text-green-700' />
-              </div>
+              <AllowAccess />
             }
             <div className='flex justify-between items-center gap-5 py-10'>
               {activeStep > 1 && (
@@ -331,6 +292,47 @@ const ErpRegistration = () => {
                 {isLastStep && (
                   <button onClick={handleButtonClick} className="bg-[#AEB2B4] px-10 text-white py-2 rounded ">Active</button>
                 )}
+              </div>
+            </div>
+          </div>
+        )}
+        {activeStep === 5 && (
+          <div className=' py-20'>
+            <div className='max-w-[400px] mx-auto space-y-4'>
+              <div className="mt-4 relative">
+                <label className="block text-sm font-medium absolute -top-3 px-2 bg-white left-3 text-gray-700">ERP Application</label>
+                <input type="text" className="mt-1 block w-full pr-10 py-3 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500 placeholder:text-blue-500 pl-5 focus:border-blue-500 sm:text-sm rounded-md" placeholder='Xero' />
+              </div>
+              <div className="mt-4 relative">
+                <label className="block text-sm font-medium absolute -top-3 px-2 bg-white left-3 text-gray-700">Xero Client ID</label>
+                <input type="text" className="mt-1 block w-full pr-10 py-3 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500 placeholder:text-blue-500 pl-5 focus:border-blue-500 sm:text-sm rounded-md" placeholder='xeroorgdefclient' />
+              </div>
+              <div className="mt-4 relative">
+                <label className="block text-sm font-medium absolute -top-3 px-2 bg-white left-3 text-gray-700">Client Secret</label>
+                <input type="text" className="mt-1 block w-full pl-5 pr-10 py-3 text-base border bg-transparent border-gray-300 focus:outline-none focus:ring-blue-500 placeholder:text-blue-500 focus:border-blue-500 sm:text-sm rounded-md" placeholder='**********' />
+              </div>
+              <div className="mt-6 relative">
+                <label className="block text-sm z-50 font-medium absolute -top-3 px-2 bg-white left-3 text-gray-700">Select Organization</label>
+                <Select
+                  defaultValue={[]}
+                  isMulti
+                  name="colors"
+                  options={colourOptions}
+                  className=""
+                  classNamePrefix="select"
+                />
+              </div>
+            </div>
+            <div className='flex justify-between items-center gap-5 py-10'>
+              {activeStep > 1 && (
+                <div className='px-10 flex justify-center items-center gap-2'>
+                  <img src={arrow1} alt="" />
+                  <button onClick={previousStep} className=" text-gray-400 py-2 rounded">Previous</button>
+                </div>
+              )}
+
+              <div className='flex justify-center items-center gap-5'>
+                <button disabled onClick={previousStep} className="bg-transparent border border-gray-400 text-black px-10  py-2 rounded">Submitted</button>
               </div>
             </div>
           </div>

@@ -1,22 +1,24 @@
 import React, { useContext, useState } from 'react'
 import { NavbarContext } from '../../../../Others/context/NavbarContext';
 import logo from '../../../../assets/3f296642258e2f8fb7b0484eb32b92a9.png'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
-    const [click, setClick] = useState(false);
-    const { instruction, setInstruction } = useContext(NavbarContext);
+    const { instruction, setInstruction, click, setClick } = useContext(NavbarContext);
 
     return (
         <nav className="flex h-[80px] px-10 items-center justify-between bg-white py-2 textblackwhite">
-            <div className="scale-100 rounded-2xl px-3 py-2 text-xl font-semibold text-black transition-all duration-200 hover:scale-110">
-                <img src={logo} className='h-10 w-full' alt="" />
+            <div className="scale-100 rounded-2xl px-3 py-2 text-xl font-semibold text-black transition-all duration-200">
+                <Link to='/'>
+                    <img src={logo} className='h-10 w-full' alt="" />
+                </Link>
             </div>
             <ul className="flex items-center justify-between gap-6 text-slate-900">
-                <li className="cursor-pointer hover:text-blue-400  font-semibold rounded-full  px-6 py-2 text-black hover:bg-sky-600">Home</li>
-                <li className="cursor-pointer hover:text-blue-400  rounded-full px-6 py-2 text-black hover:bg-sky-600">Products</li>
-                <li className="cursor-pointer hover:text-blue-400  rounded-full px-6 py-2 text-black hover:bg-sky-600">Services</li>
-                <li className="cursor-pointer hover:text-blue-400  rounded-full px-6 py-2 text-black hover:bg-sky-600">About Us</li>
+                <li className="cursor-pointer hover:text-blue-400  font-semibold rounded-full  px-6 py-2 text-black ">Home</li>
+                <li className="cursor-pointer hover:text-blue-400  rounded-full px-6 py-2 text-black ">Products</li>
+                <li className="cursor-pointer hover:text-blue-400  rounded-full px-6 py-2 text-black ">Services</li>
+                <li className="cursor-pointer hover:text-blue-400  rounded-full px-6 py-2 text-black ">About Us</li>
 
             </ul>
             <div className='relative'>
@@ -37,8 +39,14 @@ const Navbar = () => {
                     </div>
                 </ul>
                 {click && <div className='absolute top-[60px] space-y-2 right-40 py-2 w-[150px] px-2 z-50 font-semibold h-[70px] bg-white text-black'>
-                    <h1 onClick={() => setInstruction('home')} className='cursor-pointer text-[#1D6FFF]'>Bank</h1>
-                    <h1 onClick={() => setInstruction('customer-login')} className='cursor-pointer text-[#1D6FFF]'>Customer</h1>
+                    <h1 onClick={() => {
+                        setInstruction('home');
+                        setClick(false)
+                    }} className='cursor-pointer text-[#1D6FFF]'>Bank</h1>
+                    <h1 onClick={() => {
+                        setInstruction('customer-login');
+                        setClick(false);
+                    }} className='cursor-pointer text-[#1D6FFF]'>Customer</h1>
                 </div>}
             </div>
         </nav>

@@ -39,7 +39,7 @@ const Features = () => {
                             </div>
                             <div className="flex items-center flex-col justify-center gap-4 max-w-[250px]">
                                 <div className='h-12 w-12 rounded-full bg-[#EFF3FD] flex justify-center items-center'>
-                                    <img src={{ icon02 }} alt="" className='h-10 w-10' />
+                                    <img src={icon02} alt="" className='h-10 w-10' />
                                 </div>
                                 <h2 className="text-lg font-bold text-center">Massa leo scelerisque</h2>
                                 <p className="text-base text-black text-center">

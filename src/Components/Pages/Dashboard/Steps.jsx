@@ -19,8 +19,8 @@ const Steps = () => {
 
     const handleButtonClick = () => {
         if (isLastStep) {
-            // Handle form submission or final action here
             console.log("Form submitted!");
+            window.alert("Form Submitted Successfully!")
         } else {
             nextStep();
         }
